@@ -1,7 +1,7 @@
 {
 	"name": "abbas13375/yii2-assets-auto-compress",
 	"description": "Automatically compile and merge files js + css + html in yii2 project",
-	"keywords": ["yii", "app", "133jafari", "sx", "framework", "js", "css", "assets", "auto assets"],
+	"keywords": ["yii", "app", "abbas13375", "sx", "framework", "js", "css", "assets", "auto assets"],
     "homepage": "https://www.bayaneno.com/",
 	"type": "yii2-extension",
 	"license": "BSD-3-Clause",
