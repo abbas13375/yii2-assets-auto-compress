@@ -5,7 +5,7 @@
  * @license https://cms.skeeks.com/license/
  * @author Semenov Alexander <semenov@skeeks.com>
  */
-namespace skeeks\yii2\assetsAuto\vendor;
+namespace abbas13375\yii2\assetsAuto\vendor;
 use yii\helpers\ArrayHelper;
 
 /**

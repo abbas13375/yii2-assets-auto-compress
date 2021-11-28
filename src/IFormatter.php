@@ -6,7 +6,7 @@
  * @author Semenov Alexander <semenov@skeeks.com>
  */
 
-namespace skeeks\yii2\assetsAuto;
+namespace abbas13375\yii2\assetsAuto;
 
 /**
  * @author Semenov Alexander <semenov@skeeks.com>

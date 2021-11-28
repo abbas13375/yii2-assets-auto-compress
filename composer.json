@@ -27,7 +27,7 @@
 	},
     "autoload": {
         "psr-4": {
-            "skeeks\\yii2\\assetsAuto\\": "src/"
+            "abbas13375\\yii2\\assetsAuto\\": "src/"
         }
     }
 }
