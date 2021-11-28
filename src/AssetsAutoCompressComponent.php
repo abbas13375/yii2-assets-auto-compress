@@ -628,17 +628,6 @@ JS
 
                     $fileCodeTmp = explode("/", $fileCode);
                     unset($fileCodeTmp[count($fileCodeTmp) - 1]);
-                    $prependRelativePath = implode("/", $fileCodeTmp)."/";
-
-                    $contentTmp = \Minify_CSS::minify($contentTmp, [
-                        "prependRelativePath" => $prependRelativePath,
-
-                        'compress'         => true,
-                        'removeCharsets'   => true,
-                        'preserveComments' => true,
-                    ]);
-
-                    //$contentTmp = \CssMin::minify($contentTmp);
 
                     $resultContent[] = $contentTmp;
                 } else {
