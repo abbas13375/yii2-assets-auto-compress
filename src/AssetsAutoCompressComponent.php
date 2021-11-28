@@ -444,6 +444,13 @@ JS
 
                     $fileCode = $this->webroot.$fileCode;
                     $contentFile = $this->readLocalFile($fileCode);
+                    if ($this->jsFileCompress) {
+                        try{
+                            $contentFile = \JShrink\Minifier::minify($contentFile, ['flaggedComments' => $this->jsFileCompressFlaggedComments]);
+                        }catch (\Exception $e){
+
+                        }
+                    }
                     /**\Yii::info("file: " . \Yii::getAlias(\Yii::$app->assetManager->basePath . $fileCode), self::class);*/
                     //$contentFile = $this->fileGetContents( Url::to(\Yii::getAlias($tmpFileCode), true) );
                     //$contentFile = $this->fileGetContents( \Yii::$app->assetManager->basePath . $fileCode );
@@ -471,9 +478,13 @@ JS
                 }
             }
 
-            if ($this->jsFileCompress) {
-                $content = \JShrink\Minifier::minify($content, ['flaggedComments' => $this->jsFileCompressFlaggedComments]);
-            }
+//            if ($this->jsFileCompress) {
+//                try{
+//                    $content = \JShrink\Minifier::minify($content, ['flaggedComments' => $this->jsFileCompressFlaggedComments]);
+//                }catch (\Exception $e){
+//                    dd($content);
+//                }
+//            }
 
             $page = \Yii::$app->request->absoluteUrl;
             $useFunction = function_exists('curl_init') ? 'curl extension' : 'php file_get_contents';
