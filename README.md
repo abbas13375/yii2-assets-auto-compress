@@ -40,7 +40,7 @@ How to use
     //....
         'assetsAutoCompress' =>
         [
-            'class'         => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
+            'class'         => '\abbas13375\yii2\assetsAuto\AssetsAutoCompressComponent',
         ],
     //....
     ]
@@ -57,7 +57,7 @@ How to use
     'components' => [
         //....
         'assetsAutoCompress' => [
-            'class'   => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
+            'class'   => '\abbas13375\yii2\assetsAuto\AssetsAutoCompressComponent',
             'enabled' => true,
 
             'readFileTimeout' => 3,           //Time in seconds for reading each asset file
@@ -85,16 +85,16 @@ How to use
 
             'htmlFormatter' => [
                 //Enable compression html
-                'class'         => 'skeeks\yii2\assetsAuto\formatters\html\TylerHtmlCompressor',
+                'class'         => 'abbas13375\yii2\assetsAuto\formatters\html\TylerHtmlCompressor',
                 'extra'         => false,       //use more compact algorithm
                 'noComments'    => true,        //cut all the html comments
                 'maxNumberRows' => 50000,       //The maximum number of rows that the formatter runs on
 
                 //or
 
-                'class' => 'skeeks\yii2\assetsAuto\formatters\html\MrclayHtmlCompressor',
+                'class' => 'abbas13375\yii2\assetsAuto\formatters\html\MrclayHtmlCompressor',
 
-                //or any other your handler implements skeeks\yii2\assetsAuto\IFormatter interface
+                //or any other your handler implements abbas13375\yii2\assetsAuto\IFormatter interface
 
                 //or false
             ],
