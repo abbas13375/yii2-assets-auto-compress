@@ -1,13 +1,12 @@
 <?php
 /**
- * @linkForked https://bayaneno.com
  * @link https://cms.skeeks.com/
  * @copyright Copyright (c) 2010 SkeekS
  * @license https://cms.skeeks.com/license/
  * @author Semenov Alexander <semenov@skeeks.com>
  */
 
-namespace abbas13375\yii2\assetsAuto;
+namespace skeeks\yii2\assetsAuto;
 
 use yii\base\BootstrapInterface;
 use yii\base\Component;
@@ -150,6 +149,13 @@ class AssetsAutoCompressComponent extends Component implements BootstrapInterfac
      * @var bool
      */
     public $noIncludeCssFilesOnPjax = true;
+
+    /**
+     * force copy files every request . disable in prodocution mode.
+     * @var bool
+     */
+    public $forceCopy = true;
+
     /**
      * @var bool|array|string|IFormatter
      */
@@ -157,10 +163,12 @@ class AssetsAutoCompressComponent extends Component implements BootstrapInterfac
     /**
      * @var string
      */
+
     protected $_webroot = '@webroot';
     /**
      * @return IFormatter|bool
      */
+
     public function getHtmlFormatter()
     {
         return $this->_htmlFormatter;
@@ -259,6 +267,7 @@ class AssetsAutoCompressComponent extends Component implements BootstrapInterfac
         //Компиляция файлов js в один.
         //echo "<pre><code>" . print_r($view->jsFiles, true);die;
         if ($view->jsFiles && $this->jsFileCompile) {
+
             \Yii::beginProfile('Compress js files');
             foreach ($view->jsFiles as $pos => $files) {
                 if ($files) {
@@ -406,7 +415,7 @@ JS
         //$rootDir    = \Yii::getAlias('@webroot/assets/js-compress');
         $rootUrl = $rootDir.'/'.$fileName;
 
-        if (file_exists($rootUrl)) {
+        if (!$this->forceCopy) {
             $resultFiles = [];
 
             if (!$this->jsFileRemouteCompile) {
@@ -435,7 +444,6 @@ JS
 
                     $fileCode = $this->webroot.$fileCode;
                     $contentFile = $this->readLocalFile($fileCode);
-
                     /**\Yii::info("file: " . \Yii::getAlias(\Yii::$app->assetManager->basePath . $fileCode), self::class);*/
                     //$contentFile = $this->fileGetContents( Url::to(\Yii::getAlias($tmpFileCode), true) );
                     //$contentFile = $this->fileGetContents( \Yii::$app->assetManager->basePath . $fileCode );
@@ -587,6 +595,7 @@ JS
      */
     protected function _processingCssFiles($files = [])
     {
+
         $fileName = md5(implode(array_keys($files)).$this->getSettingsHash()).'.css';
         $publicUrl = \Yii::$app->assetManager->baseUrl.'/css-compress/'.$fileName;
         //$publicUrl  = \Yii::getAlias('@web/assets/css-compress/' . $fileName);
@@ -595,9 +604,7 @@ JS
         //$rootDir    = \Yii::getAlias('@webroot/assets/css-compress');
         $rootUrl = $rootDir.'/'.$fileName;
 
-        if (file_exists($rootUrl)) {
-            $resultFiles = [];
-
+        if (!$this->forceCopy && file_exists($rootUrl)) {
             if (!$this->cssFileRemouteCompile) {
                 foreach ($files as $fileCode => $fileTag) {
                     if (!Url::isRelative($fileCode)) {
@@ -624,11 +631,17 @@ JS
 
                     $fileCodeLocal = $this->webroot.$fileCodeLocal;
                     $contentTmp = trim($this->readLocalFile($fileCodeLocal));
-
                     //$contentTmp         = trim($this->fileGetContents( Url::to(\Yii::getAlias($fileCode), true) ));
 
                     $fileCodeTmp = explode("/", $fileCode);
                     unset($fileCodeTmp[count($fileCodeTmp) - 1]);
+                    $prependRelativePath = implode("/", $fileCodeTmp)."/";
+                    if ($this->cssFileCompress) {
+                        $contentTmp = \CssMin::minify($contentTmp);
+                    }
+                    //$contentTmp = \CssMin::minify($contentTmp);
+
+                    $contentTmp = str_replace('../', $prependRelativePath .'../', $contentTmp);
 
                     $resultContent[] = $contentTmp;
                 } else {
@@ -653,9 +666,9 @@ JS
                 }
             }
 
-            if ($this->cssFileCompress) {
-                $content = \CssMin::minify($content);
-            }
+//            if ($this->cssFileCompress) {
+//                $content = \CssMin::minify($content);
+//            }
 
             $page = \Yii::$app->request->absoluteUrl;
             $useFunction = function_exists('curl_init') ? 'curl extension' : 'php file_get_contents';
