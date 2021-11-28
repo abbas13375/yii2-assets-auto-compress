@@ -6,8 +6,8 @@ This allows you to improve the performance of google page speed.
 
 This tool only works on real sites. On the local projects is not working!
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/skeeks/yii2-assets-auto-compress.svg)](https://packagist.org/packages/skeeks/yii2-assets-auto-compress)
-[![Total Downloads](https://img.shields.io/packagist/dt/skeeks/yii2-assets-auto-compress.svg)](https://packagist.org/packages/skeeks/yii2-assets-auto-compress)
+[![Latest Stable Version](https://img.shields.io/packagist/v/abbas13375/yii2-assets-auto-compress.svg)](https://packagist.org/packages/abbas13375/yii2-assets-auto-compress)
+[![Total Downloads](https://img.shields.io/packagist/dt/abbas13375/yii2-assets-auto-compress.svg)](https://packagist.org/packages/abbas13375/yii2-assets-auto-compress)
 
 
 Installation
@@ -18,13 +18,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist skeeks/yii2-assets-auto-compress "*"
+php composer.phar require --prefer-dist abbas13375/yii2-assets-auto-compress "*"
 ```
 
 or add
 
 ```
-"skeeks/yii2-assets-auto-compress": "*"
+"abbas13375/yii2-assets-auto-compress": "*"
 ```
 
 
@@ -116,10 +116,9 @@ Links
 
 Demo (view source code)
 ----------
-* [https://gallery.world](https://gallery.world)
-* [http://skeeks.com/](https://skeeks.com)
-* [http://select-moto.ru/](https://select-moto.ru)
-* [http://motopraktika.ru/](https://motopraktika.ru)
+* [https://biologyevents.ir](https://biologyevents.ir)
+* [http://bayaneno.com/](https://bayaneno.com)
+
 
 
 Screenshot
